@@ -1,6 +1,7 @@
 package com.github.ffq.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,9 @@ public class UserService {
         jdbcTemplate.execute("INSERT INTO user (id, name) VALUES\n" +
                 "(5, 'Jack5')");
         try {
+//            UserService proxy = (UserService) AopContext.currentProxy();
             save2();
+//    proxy.save2();
         } catch (Exception e) {
             System.err.println("出错啦");
         }
